@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 
-export default function QuestionTimer({timeout,onTimeout}){
-    const [remainingTime,setRemainingTime]=useState(timeout)
+export default function QuestionTimer({timeout,onTimeout,mode}){
+    const [remainingTime,setRemainingTime]=useState(timeout);
     useEffect(()=>{
         console.log("timeout")
-        const time=setTimeout(()=>{
-            onTimeout();
-        },timeout);
+        const time=setTimeout(
+            onTimeout
+        ,timeout);
         return ()=>{
             clearTimeout(time);
         }
@@ -23,5 +23,5 @@ export default function QuestionTimer({timeout,onTimeout}){
     },[])
     
 
-    return (  <progress id='question-time' max={timeout} value={remainingTime}/>)
+    return (  <progress id='question-time' max={timeout} className={mode} value={remainingTime}/>)
 }

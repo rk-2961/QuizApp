@@ -5,7 +5,7 @@ export default function Answers({answers,selectedAnswer,answerState,onSelect}){
         shuffledAnswers.current=[...answers];
         shuffledAnswers.current.sort(()=>Math.random()-0.5);
     }
-    return  <ul id="answers">
+    return ( <ul id="answers">
     {shuffledAnswers.current.map((answer)=> {
         const isSelected=selectedAnswer===answer;
         let cssClasses='';
@@ -17,7 +17,7 @@ export default function Answers({answers,selectedAnswer,answerState,onSelect}){
         }
         return (
             <li key={answer} className='answer'>
-                <button className={cssClasses} onClick={()=>{
+                <button disabled={answerState!==''} className={cssClasses} onClick={()=>{
                     onSelect(answer)
                 }}>{answer}</button>
             </li>
@@ -27,5 +27,5 @@ export default function Answers({answers,selectedAnswer,answerState,onSelect}){
     )}
     
 
-</ul>
+</ul>)
 }
